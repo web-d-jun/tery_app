@@ -48,18 +48,21 @@ class _StoreViewState extends State<StoreView> {
   }
 }
 
-getData() {
-  print('?');
-}
-
 buildProductList() {
+  ScrollController _getData = ScrollController();
+
+  _getData.addListener(() {
+    print('scrolll....');
+  });
+
   return Expanded(
     child: Padding(
       padding: const EdgeInsets.all(0),
       child: GridView.builder(
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 10,
+        controller: _getData,
+        itemCount: 50,
         itemBuilder: (BuildContext context, int index) {
           return const ProductItem();
         },
