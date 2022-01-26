@@ -7,6 +7,7 @@ class StoreView extends StatefulWidget {
 
 class _StoreViewState extends State<StoreView> {
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _getData = ScrollController();
 
   @override
   void initState() {
@@ -17,11 +18,15 @@ class _StoreViewState extends State<StoreView> {
         text: text,
       );
     });
+    _getData.addListener(() {
+      print('scroll....');
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _getData.dispose();
     super.dispose();
   }
 
@@ -42,37 +47,21 @@ class _StoreViewState extends State<StoreView> {
             ),
           ),
         ),
-        buildProductList(),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              controller: _getData,
+              itemCount: 50,
+              itemBuilder: (BuildContext context, int index) {
+                return const ProductItem();
+              },
+            ),
+          ),
+        ),
       ],
     );
   }
-}
-
-buildProductList() {
-  ScrollController _getData = ScrollController();
-
-  _getData.addListener(() {
-    print('scrolll....');
-  });
-
-  return Expanded(
-    child: Padding(
-      padding: const EdgeInsets.all(0),
-      child: GridView.builder(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        controller: _getData,
-        itemCount: 50,
-        itemBuilder: (BuildContext context, int index) {
-          return const ProductItem();
-        },
-      ),
-      // child: GridView.count(
-      //   crossAxisCount: 2,
-      //   children: List.generate(100, (index) {
-      //     return const ProductItem();
-      //   }),
-      // ),
-    ),
-  );
 }
