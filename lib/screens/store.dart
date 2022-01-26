@@ -48,16 +48,28 @@ class _StoreViewState extends State<StoreView> {
   }
 }
 
+getData() {
+  print('?');
+}
+
 buildProductList() {
   return Expanded(
     child: Padding(
       padding: const EdgeInsets.all(0),
-      child: GridView.count(
-        crossAxisCount: 2,
-        children: List.generate(100, (index) {
+      child: GridView.builder(
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
           return const ProductItem();
-        }),
+        },
       ),
+      // child: GridView.count(
+      //   crossAxisCount: 2,
+      //   children: List.generate(100, (index) {
+      //     return const ProductItem();
+      //   }),
+      // ),
     ),
   );
 }
