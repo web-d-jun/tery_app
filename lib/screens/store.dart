@@ -55,7 +55,7 @@ buildProductList() {
       child: GridView.count(
         crossAxisCount: 2,
         children: List.generate(100, (index) {
-          return ProductItem();
+          return const ProductItem();
         }),
       ),
     ),
