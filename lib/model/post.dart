@@ -1,14 +1,22 @@
-import 'package:equatable/equatable.dart';
+import 'dart:convert';
 
-class Post extends Equatable {
-  const Post(this.id, this.title, this.body);
+import 'package:http/http.dart' as http;
 
-  final int id;
+var urlInfo = 'https://my-json-server.typicode.com/web-d-jun/tery_app/posts';
+var url = Uri.parse('${urlInfo}');
+
+class Post {
+  final String id;
   final String title;
-  final String body;
+  Post({required this.id, required this.title});
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(id: json['id'], title: json['title']);
+  }
+}
 
-  @override
-  String toString() => 'Post { id: $id }';
-  @override
-  List<Object> get props => [id, title, body];
+Future<Post> fetchPost() async {
+  var response = await http.get(url);
+  print(response);
+  var responseBody = response.body;
+  return Post.fromJson(json.decode(responseBody));
 }

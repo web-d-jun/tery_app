@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tery_app/widgets/product_item.dart';
+import 'package:tery_app/model/post.dart';
 
 class StoreView extends StatefulWidget {
   _StoreViewState createState() => _StoreViewState();
@@ -8,10 +9,14 @@ class StoreView extends StatefulWidget {
 class _StoreViewState extends State<StoreView> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _getData = ScrollController();
+  late Future<Post> post;
 
   @override
   void initState() {
     super.initState();
+    post = fetchPost();
+    print(post);
+
     _controller.addListener(() {
       final String text = _controller.text.toLowerCase();
       _controller.value = _controller.value.copyWith(
