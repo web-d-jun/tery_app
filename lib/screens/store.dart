@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tery_app/widgets/product_item.dart';
-import 'package:tery_app/model/post.dart';
+import 'package:tery_app/model/store.dart';
 
 class StoreView extends StatefulWidget {
   @override
@@ -10,12 +10,12 @@ class StoreView extends StatefulWidget {
 class _StoreViewState extends State<StoreView> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _getData = ScrollController();
-  late Future<List<Post>> post;
+  late Future<List<Store>> store;
 
   @override
   void initState() {
     super.initState();
-    post = fetchPost();
+    store = fetchPost();
 
     _controller.addListener(() {
       final String text = _controller.text.toLowerCase();
@@ -53,9 +53,9 @@ class _StoreViewState extends State<StoreView> {
           ),
         ),
         Container(
-          child: FutureBuilder<List<Post>>(
-            future: post,
-            builder: (context, AsyncSnapshot<List<Post>> snapshot) {
+          child: FutureBuilder<List<Store>>(
+            future: store,
+            builder: (context, AsyncSnapshot<List<Store>> snapshot) {
               if (snapshot.hasData) {
                 return Expanded(
                   child: Padding(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tery_app/model/post.dart';
+import 'package:tery_app/model/store.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key, required this.items}) : super(key: key);
-  final Post items;
+  final Store items;
 
   @override
   Widget build(BuildContext context) {
-    print(items.title);
     return Padding(
       padding: EdgeInsets.all(4),
       child: Container(
@@ -17,7 +16,7 @@ class ProductItem extends StatelessWidget {
         width: 200,
         height: 200,
         child: Center(
-          child: Text(items.title),
+          child: Image.network('${items.imageUrl}'),
         ),
       ),
     );
