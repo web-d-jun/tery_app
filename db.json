@@ -29,7 +29,6 @@
     { "id": 27, "title": "Store 27" },
     { "id": 28, "title": "Store 28" },
     { "id": 29, "title": "Store 29" },
-    { "id": 30, "title": "Store 30" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 },
