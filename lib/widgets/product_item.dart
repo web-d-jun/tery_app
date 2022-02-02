@@ -15,8 +15,19 @@ class ProductItem extends StatelessWidget {
             border: Border.all(width: 2.0, style: BorderStyle.solid)),
         width: 200,
         height: 200,
-        child: Center(
-          child: Image.network('${items.imageUrl}'),
+        child: Column(
+          children: [
+            Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              child: Image.network('${items.imageUrl}'),
+            ),
+          ],
         ),
       ),
     );
