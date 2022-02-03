@@ -6,3 +6,5 @@ abstract class StoreEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+// https://bloclibrary.dev/#/flutterinfinitelisttutorial
