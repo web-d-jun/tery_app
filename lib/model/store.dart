@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:faker/faker.dart';
 import 'package:http/http.dart' as http;
 
-var urlInfo = 'https://my-json-server.typicode.com/web-d-jun/tery_app/stores';
+var urlInfo =
+    'https://my-json-server.typicode.com/web-d-jun/tery_app/stores?_start=0&_limit=3';
 var url = Uri.parse('${urlInfo}');
 
 class Store {
