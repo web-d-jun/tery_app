@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tery_app/screens/store.dart';
+import 'package:tery_app/store/view/store_view.dart';
 import 'package:tery_app/screens/coupon.dart';
 import 'package:tery_app/screens/liked.dart';
 import 'package:tery_app/screens/cart_view.dart';
@@ -13,13 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<Widget> _children = [
-    StoreView(),
-    LikedView(),
-    CouponView(),
-    CartView(),
-    MyView()
-  ];
+  final List<Widget> _children = [StoreView(), LikedView(), CouponView(), CartView(), MyView()];
   int _currentIndex = 0;
   void _onTap(int index) {
     setState(() => {_currentIndex = index});

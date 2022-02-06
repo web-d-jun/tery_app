@@ -26,7 +26,7 @@ class StoreState extends Equatable {
 
   @override
   String toString() {
-    return '''PostState { status: $status, hasReachedMax: $hasReachedMax, posts: ${store.length} }''';
+    return '''StoreState { status: $status, hasReachedMax: $hasReachedMax, store: ${store.length} }''';
   }
 
   @override

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tery_app/consts.dart';
-import 'package:tery_app/screens/main.dart';
+import 'package:tery_app/app.dart';
+import 'package:bloc/bloc.dart';
+import 'package:tery_app/simple_bloc_observer.dart';
 
 void main() {
-  runApp(const MyApp());
+  BlocOverrides.runZoned(() => runApp(const MyApp()), blocObserver: SimpleBlocObserver());
 }
 
 class MyApp extends StatelessWidget {
