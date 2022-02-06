@@ -46,6 +46,7 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
   }
 
   Future<List<Store>> _fetchStore([startIndex = 0]) async {
+    print(startIndex);
     final response = await httpClient.get(Uri.https(
       'jsonplaceholder.typicode.com',
       '/posts',

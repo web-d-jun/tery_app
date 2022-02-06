@@ -34,7 +34,6 @@ class _StoreListState extends State<StoreList> {
             controller: _scrollController,
             itemCount: state.hasReachedMax ? state.store.length : state.store.length + 1,
             itemBuilder: (BuildContext context, int index) {
-              print('${index}, ${state.store.length}');
               return index >= state.store.length
                   ? BottomLoader()
                   : StoreListItem(
@@ -61,12 +60,14 @@ class _StoreListState extends State<StoreList> {
 
   void _onScroll() {
     if (_isBottom) context.read<StoreBloc>().add(StoreFetched());
+    // print(_isBottom);
   }
 
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.9);
+    // print('${currentScroll}  .....  ${maxScroll * 0.9} ... ${maxScroll}');
+    return currentScroll >= (maxScroll * 0.6);
   }
 }
