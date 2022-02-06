@@ -9,7 +9,8 @@ class StoreListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('dd'),
+      decoration: BoxDecoration(border: Border.all(width: 2.0, style: BorderStyle.solid)),
+      child: Text('${store.id}'),
     );
   }
 }
