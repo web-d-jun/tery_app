@@ -16,7 +16,6 @@ const throttleDuration = Duration(microseconds: 100);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
-    print('event: ${events}    mapper: ${mapper}');
     return droppable<E>().call(events.throttle(duration), mapper);
   };
 }
