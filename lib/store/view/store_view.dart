@@ -56,30 +56,6 @@ class _StoreViewState extends State<StoreView> {
           ),
         ),
         Expanded(
-          // child: FutureBuilder<List<Store>>(
-          //   future: store,
-          //   builder: (context, AsyncSnapshot<List<Store>> snapshot) {
-          //     if (snapshot.hasData) {
-          //       return Expanded(
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(0),
-          //           child: GridView.builder(
-          //             gridDelegate:
-          //                 const SliverGridDelegateWithFixedCrossAxisCount(
-          //                     crossAxisCount: 2),
-          //             controller: _getData,
-          //             itemCount: snapshot.data!.length,
-          //             itemBuilder: (BuildContext context, int index) {
-          //               return ProductItem(items: snapshot.data![index]);
-          //             },
-          //           ),
-          //         ),
-          //       );
-          //     } else {
-          //       return const CircularProgressIndicator();
-          //     }
-          //   },
-          // ),
           child: BlocProvider(
             create: (_) => StoreBloc(httpClient: http.Client())..add(StoreFetched()),
             child: StoreList(),
