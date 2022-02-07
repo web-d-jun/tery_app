@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:stream_transform/stream_transform.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,10 +12,18 @@ part 'store_event.dart';
 part 'store_state.dart';
 
 const _storeLimit = 20;
+const throttleDuration = Duration(microseconds: 100);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    print('event: ${events}    mapper: ${mapper}');
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
+}
 
 class StoreBloc extends Bloc<StoreEvent, StoreState> {
   StoreBloc({required this.httpClient}) : super(const StoreState()) {
-    on<StoreFetched>(_onStoreFetched);
+    on<StoreFetched>(_onStoreFetched, transformer: throttleDroppable(throttleDuration));
   }
   final http.Client httpClient;
 
