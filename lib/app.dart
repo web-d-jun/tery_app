@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SvgPicture.asset('assets/images/tery_logo.svg'),
+        title: Center(child: SvgPicture.asset('assets/images/tery_logo.svg')),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
