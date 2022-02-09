@@ -4,6 +4,7 @@ import 'package:tery_app/consts.dart';
 import 'package:tery_app/app.dart';
 import 'package:bloc/bloc.dart';
 import 'package:tery_app/simple_bloc_observer.dart';
+import 'package:tery_app/store/view/store_view.dart';
 
 void main() {
   BlocOverrides.runZoned(() => runApp(const MyApp()), blocObserver: SimpleBlocObserver());
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreen(),
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => const MainScreen(),
+      },
     );
   }
 }

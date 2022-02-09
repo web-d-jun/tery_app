@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _children = [StoreView(), LikedView(), CouponView(), CartView(), MyView()];
   int _currentIndex = 0;
   void _onTap(int index) {
-    setState(() => {_currentIndex = index});
+    // setState(() => {_currentIndex = index});
   }
 
   @override

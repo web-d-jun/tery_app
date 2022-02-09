@@ -35,9 +35,14 @@ class _StoreListState extends State<StoreList> {
             itemCount: state.hasReachedMax ? state.store.length : state.store.length + 1,
             itemBuilder: (BuildContext context, int index) {
               return index >= state.store.length
-                  ? BottomLoader()
-                  : StoreListItem(
-                      store: state.store[index],
+                  ? const BottomLoader()
+                  : GestureDetector(
+                      onTap: () => {
+                        print(state.store[index]),
+                      },
+                      child: StoreListItem(
+                        store: state.store[index],
+                      ),
                     );
             },
           );
