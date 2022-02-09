@@ -65,10 +65,8 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       final body = json.decode(response.body) as List;
 
       return body.map((dynamic json) {
-        json['imageUrl'] = faker.image.image();
         print(faker.image.image());
-        return Store(
-            id: json['id'], title: json['title'], body: json['body'], imageUrl: json['imageUrl']);
+        return Store(id: json['id'], title: json['title'], imageUrl: json['imageUrl']);
       }).toList();
     }
     throw Exception('error fetch');
