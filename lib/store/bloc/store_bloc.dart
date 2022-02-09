@@ -57,10 +57,11 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
   Future<List<Store>> _fetchStore([startIndex = 0]) async {
     print(startIndex);
     final response = await httpClient.get(Uri.https(
-      'jsonplaceholder.typicode.com',
-      '/posts',
+      'my-json-server.typicode.com',
+      '/web-d-jun/tery_app/stores',
       <String, String>{'_start': '$startIndex', '_limit': '$_storeLimit'},
     ));
+    print(response.body);
     if (response.statusCode == 200) {
       final body = json.decode(response.body) as List;
 
