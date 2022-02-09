@@ -18,7 +18,16 @@ class StoreListItem extends StatelessWidget {
         height: 200,
         child: Column(
           children: [
-            Image.network(store.imageUrl),
+            Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              child: Image.network(store.imageUrl),
+            ),
             Container(
               child: Text('${store.id}'),
             )
