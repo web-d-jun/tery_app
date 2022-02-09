@@ -5,7 +5,6 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
-import 'package:faker/faker.dart';
 
 import 'package:tery_app/store/models/store.dart';
 
@@ -65,7 +64,6 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       final body = json.decode(response.body) as List;
 
       return body.map((dynamic json) {
-        print(faker.image.image());
         return Store(id: json['id'], title: json['title'], imageUrl: json['imageUrl']);
       }).toList();
     }
