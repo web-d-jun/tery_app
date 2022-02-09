@@ -5,6 +5,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
+import 'package:faker/faker.dart';
 
 import 'package:tery_app/store/models/store.dart';
 
@@ -55,18 +56,19 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
   }
 
   Future<List<Store>> _fetchStore([startIndex = 0]) async {
-    print(startIndex);
     final response = await httpClient.get(Uri.https(
       'my-json-server.typicode.com',
       '/web-d-jun/tery_app/stores',
       <String, String>{'_start': '$startIndex', '_limit': '$_storeLimit'},
     ));
-    print(response.body);
     if (response.statusCode == 200) {
       final body = json.decode(response.body) as List;
 
       return body.map((dynamic json) {
-        return Store(id: json['id'], title: json['title'], body: json['body']);
+        json['imageUrl'] = faker.image.image();
+        print(faker.image.image());
+        return Store(
+            id: json['id'], title: json['title'], body: json['body'], imageUrl: json['imageUrl']);
       }).toList();
     }
     throw Exception('error fetch');

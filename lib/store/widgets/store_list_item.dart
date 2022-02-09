@@ -8,9 +8,23 @@ class StoreListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(width: 2.0, style: BorderStyle.solid)),
-      child: Text('${store.id}'),
+    return Padding(
+      padding: EdgeInsets.all(4),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(width: 2.0, style: BorderStyle.solid)),
+        width: 200,
+        height: 200,
+        child: Column(
+          children: [
+            Image.network(store.imageUrl),
+            Container(
+              child: Text('${store.id}'),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
