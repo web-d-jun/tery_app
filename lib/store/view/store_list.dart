@@ -39,6 +39,7 @@ class _StoreListState extends State<StoreList> {
                   : GestureDetector(
                       onTap: () => {
                         print(state.store[index]),
+                        Navigator.pushNamed(context, '/store-detail')
                       },
                       child: StoreListItem(
                         store: state.store[index],
