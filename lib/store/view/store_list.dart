@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tery_app/store/store.dart';
+import 'package:tery_app/store/view/store_list_detail.dart';
+import 'package:tery_app/store/models/store.dart';
 
 class StoreList extends StatefulWidget {
   @override
@@ -38,8 +40,12 @@ class _StoreListState extends State<StoreList> {
                   ? const BottomLoader()
                   : GestureDetector(
                       onTap: () => {
-                        print(state.store[index]),
-                        Navigator.pushNamed(context, '/store-detail')
+                        // print(state.store[index]),
+                        Navigator.pushNamed(
+                          context,
+                          StoreListDetail.routeName,
+                          arguments: state.store[index],
+                        )
                       },
                       child: StoreListItem(
                         store: state.store[index],
