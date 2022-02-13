@@ -9,11 +9,19 @@ class StoreListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 2.0, style: BorderStyle.solid)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.7),
+              spreadRadius: 2,
+              blurRadius: 5,
+            )
+          ],
+        ),
         width: 200,
         height: 200,
         child: Column(
