@@ -50,6 +50,9 @@ class _StoreViewState extends State<StoreView> {
                 border: OutlineInputBorder(),
                 labelText: '매장을 검색해보세요.',
               ),
+              onChanged: (text) {
+                print('first ${text}');
+              },
             ),
           ),
         ),
