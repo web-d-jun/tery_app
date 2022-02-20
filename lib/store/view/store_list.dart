@@ -39,14 +39,7 @@ class _StoreListState extends State<StoreList> {
               return index >= state.store.length
                   ? const BottomLoader()
                   : GestureDetector(
-                      onTap: () => {
-                        // print(state.store[index]),
-                        Navigator.pushNamed(
-                          context,
-                          StoreListDetail.routeName,
-                          arguments: state.store[index],
-                        )
-                      },
+                      onTap: () => onTap(context, StoreListDetail.routeName, state.store[index]),
                       child: StoreListItem(
                         store: state.store[index],
                       ),
@@ -82,4 +75,12 @@ class _StoreListState extends State<StoreList> {
     // print('${currentScroll}  .....  ${maxScroll * 0.9} ... ${maxScroll}');
     return currentScroll >= (maxScroll * 0.6);
   }
+}
+
+void onTap(ctx, routerName, data) {
+  Navigator.pushNamed(
+    ctx,
+    routerName,
+    arguments: data,
+  );
 }
