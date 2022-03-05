@@ -11,16 +11,21 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   AuthenticationBloc({required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,
         super(const AuthenticationState.unknown()) {
-    on<AuthenticationStatusChanged>(
-      (event, emit) => {
-        print('AuthenticationStatusChanged ${event} ${emit}'),
-      },
-    );
-    _authenticationStatusSubscription = _authenticationRepository.status.listen((status) {
-      // print(status);
-    });
+    on<AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
+    _authenticationStatusSubscription = _authenticationRepository.status
+        .listen((status) => add(AuthenticationStatusChanged(status)));
   }
 
   final AuthenticationRepository _authenticationRepository;
   late StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
+}
+
+void _onAuthenticationStatusChanged(
+    AuthenticationStatusChanged event, Emitter<AuthenticationState> emit) {
+  switch (event.status) {
+    case AuthenticationStatus.unauthenticated:
+      return emit(const AuthenticationState.unauthenticated());
+    default:
+      return;
+  }
 }

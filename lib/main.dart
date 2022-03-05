@@ -13,6 +13,7 @@ import 'package:tery_app/authentication/authentication.dart';
 import 'package:tery_app/splash/splash.dart';
 
 import 'package:tery_app/homet/homet.dart';
+import 'package:tery_app/login/login.dart';
 
 void main() {
   BlocOverrides.runZoned(() => runApp(MyApp(authenticationRepository: AuthenticationRepository())),
@@ -84,29 +85,33 @@ class _AppViewState extends State<AppView> {
   NavigatorState get _navigator => _navigatorKey.currentState!;
 
   Widget build(BuildContext context) {
-    print(_navigatorKey.currentState);
-    print(AuthenticationStatus.authenticated);
     return MaterialApp(
       navigatorKey: _navigatorKey,
       builder: (context, child) {
         return BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {
-            print('ddddsadadsadsa');
-            // switch (state.status) {
-            //   case AuthenticationStatus.authenticated:
-            //     _navigator.pushAndRemoveUntil<void>(
-            //       HometPage.route(),
-            //       (route) => false,
-            //     );
-            //     break;
-            //   default:
-            //     break;
-            // }
+            print('${state} state...');
+            switch (state.status) {
+              case AuthenticationStatus.authenticated:
+                _navigator.pushAndRemoveUntil<void>(
+                  HometPage.route(),
+                  (route) => false,
+                );
+                break;
+              case AuthenticationStatus.unauthenticated:
+                _navigator.pushAndRemoveUntil<void>(
+                  LoginPage.route(),
+                  (route) => false,
+                );
+                break;
+              default:
+                break;
+            }
           },
           child: child,
         );
       },
-      initialRoute: '/home',
+      // initialRoute: '/home',
       onGenerateRoute: (_) => SplashPage.route(),
     );
   }
