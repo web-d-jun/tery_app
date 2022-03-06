@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   static Route route() {
@@ -9,7 +10,12 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('login'),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          // child: BlocProvider(
+          //   create: (context) {},
+          // ),
+        ),
       ),
     );
   }
