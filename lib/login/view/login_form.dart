@@ -7,13 +7,13 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (contextl, state) {
-        print(state);
+        print('${state} listener....');
       },
       child: Align(
         alignment: const Alignment(0, -1 / 3),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [_UserNameInput()],
+          children: [_UserNameInput(), _PasswordInput()],
         ),
       ),
     );
@@ -34,7 +34,22 @@ class _UserNameInput extends StatelessWidget {
           onChanged: (username) => context.read<LoginBloc>().add(
                 LoginUsernameChanged(username),
               ),
-          decoration: InputDecoration(labelText: '이름', errorText: null),
+          decoration: InputDecoration(labelText: '이름', errorText: 'fail'),
+        );
+      },
+    );
+  }
+}
+
+class _PasswordInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        return TextField(
+          key: const Key('loginForm_passwordInput_textField'),
+          // onChanged: (password) => ,
+          decoration: InputDecoration(labelText: '비밀번호', errorText: 'fail'),
         );
       },
     );
